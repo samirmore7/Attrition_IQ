@@ -1,10 +1,10 @@
 # AttritionIQ | Workforce Insights
 
-### Employee Attrition Analytics & Machine Learning Prediction Platform
+### HR Analytics, Employee Attrition Prediction & Workforce Intelligence
 
 <p align="center">
-  <a href="https://attritioniq-7.streamlit.app/">
-    <img src="https://img.shields.io/badge/Live%20App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Live Streamlit App"/>
+  <a href="https://attritioniq-7.streamlit.app/#hr-attrition-intelligence">
+    <img src="https://img.shields.io/badge/Live%20Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Live Streamlit App"/>
   </a>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
   <img src="https://img.shields.io/badge/Snowflake-29B5E8?style=for-the-badge&logo=snowflake&logoColor=white" alt="Snowflake"/>
@@ -12,133 +12,150 @@
   <img src="https://img.shields.io/badge/Scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="Scikit-learn"/>
 </p>
 
-**AttritionIQ** is an end-to-end HR analytics and employee attrition prediction project that combines business intelligence, data engineering, exploratory data analysis, and machine learning to transform workforce data into actionable insights.
+**AttritionIQ** is an end-to-end HR analytics and employee attrition prediction project that combines data analytics, machine learning, cloud data warehousing, and business intelligence.
 
-The project integrates a **Snowflake data warehouse, Python-based Random Forest prediction pipeline, Streamlit web application, and interactive Power BI dashboards** to help users understand attrition trends, investigate workforce patterns, and identify employees who may benefit from further HR review.
+The project uses **Snowflake, Python, Random Forest, Streamlit, and Microsoft Power BI** to explore employee attrition patterns, investigate workforce trends, estimate attrition probabilities, and identify employee segments that may benefit from further HR review.
 
-## Live Application
+## Live Demo
 
-### [Launch AttritionIQ — Streamlit App](https://attritioniq-7.streamlit.app/#hr-attrition-intelligence)
-
-Explore the deployed application for interactive workforce analytics, employee attrition predictions, risk indicators, and model insights.
+### [Launch AttritionIQ — Live Streamlit Application](https://attritioniq-7.streamlit.app/#hr-attrition-intelligence)
 
 **GitHub Repository:** [Attrition_IQ](https://github.com/samirmore7/Attrition_IQ)
 
-## Project Highlights
+## Table of Contents
 
-- Analyzed a workforce dataset containing **4,700 employee records and 13 columns**.
-- Integrated Snowflake as the source for HR analytics.
-- Developed a Random Forest classification pipeline with preprocessing and SMOTE.
-- Built an interactive Streamlit application for workforce analysis and attrition prediction.
-- Created a three-page Power BI report for executive insights, attrition drivers, and risk segmentation.
-- Evaluated different classification thresholds to study the precision–recall trade-off.
-- Implemented employee segmentation using configurable business-defined risk factors.
-
-## Dashboard Previews
-
-The following images should be uploaded to the repository under the `screenshots/` folder. The README will display them once the filenames match the files you upload.
-
-### 1. Streamlit — HR Attrition Intelligence
-
-![Streamlit HR Attrition Dashboard](screenshots/streamlit-dashboard.png)
-
-[Open the live Streamlit dashboard](https://attritioniq-7.streamlit.app/)
-
-### 2. Power BI — Executive Overview
-
-![Power BI Executive Overview](screenshots/powerbi-executive-overview.png)
-
-Provides a high-level view of employee headcount, attrition rates, department comparisons, job-role trends, and workforce composition.
-
-### 3. Power BI — Attrition Drivers
-
-![Power BI Attrition Drivers](screenshots/powerbi-attrition-drivers.png)
-
-Explores attrition patterns across overtime, age, income, distance from home, performance ratings, and job satisfaction.
-
-### 4. Power BI — Risk Segmentation & Action List
-
-![Power BI Risk Segmentation](screenshots/powerbi-risk-segmentation.png)
-
-Segments employees based on defined risk factors and provides an action-list view for further HR review.
-
-### 5. Streamlit — Employee Attrition Prediction
-
-![Employee Attrition Prediction](screenshots/attrition-prediction.png)
-
-Shows the employee prediction interface and its outputs. Use a synthetic example or appropriately anonymized information in screenshots.
-
-> If any screenshot is not uploaded yet, upload it using the exact filename above or update the corresponding Markdown path.
+- [Project Overview](#project-overview)
+- [Dashboard Screenshots](#dashboard-screenshots)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [Dataset Overview](#dataset-overview)
+- [Exploratory Data Analysis](#exploratory-data-analysis)
+- [Machine Learning Model](#machine-learning-model)
+- [Model Evaluation](#model-evaluation)
+- [Streamlit Application](#streamlit-application)
+- [Power BI Dashboard](#power-bi-dashboard)
+- [Project Structure](#project-structure)
+- [Installation and Setup](#installation-and-setup)
+- [Run the Application](#run-the-application)
+- [Security and Responsible Use](#security-and-responsible-use)
+- [Future Improvements](#future-improvements)
+- [Author](#author)
 
 ---
 
-## 1. Business Problem
+## Project Overview
 
-Employee attrition can increase recruitment and onboarding costs, disrupt teams, and result in the loss of organizational knowledge.
+Employee attrition can increase recruitment costs, disrupt teams, and result in the loss of organizational knowledge. Organizations can use workforce analytics to understand historical turnover patterns and investigate the factors associated with employees leaving.
 
-HR teams need ways to explore workforce data, understand where attrition is concentrated, and investigate the characteristics associated with employees leaving an organization.
-
-AttritionIQ addresses this challenge through three connected analytical capabilities:
+AttritionIQ combines three analytical approaches:
 
 1. **Descriptive analytics:** Understand workforce composition and historical attrition patterns.
-2. **Predictive analytics:** Estimate attrition probability using a trained machine learning model.
-3. **Business intelligence:** Explore attrition drivers and employee segments through interactive Power BI dashboards.
+2. **Predictive analytics:** Estimate attrition probability using a trained Random Forest classification pipeline.
+3. **Business intelligence:** Explore attrition drivers and workforce segments through interactive Power BI dashboards.
 
-The objective is to support informed workforce planning and retention discussions—not to make automatic employment decisions.
+The project demonstrates an end-to-end workflow, from retrieving workforce data and preparing features to building a machine learning model and presenting results through interactive dashboards.
 
-## 2. Project Architecture
+Predictions are estimates intended to support human-led analysis. They do not guarantee that an employee will leave.
 
-```text
-                  HR Workforce Data
-                         |
-                         v
-                 Snowflake Warehouse
-                         |
-             +-----------+-----------+
-             |                       |
-             v                       v
-      Python Data Analysis      Power BI Reports
-             |
-             v
-      Data Preprocessing
-             |
-             v
-      SMOTE + Random Forest
-             |
-             v
-      Trained ML Pipeline
-             |
-             v
-       Streamlit Application
-             |
-             v
-      Attrition Predictions,
-      Analytics & Risk Insights
-```
+## Dashboard Screenshots
 
-Snowflake is the common data source for the analytics workflows. The Streamlit application hosts the interactive Python application, while Power BI provides a separate business intelligence report.
+The following screenshots show the three pages of the Power BI report.
 
-The Power BI report is a separate deliverable and is not automatically published through the Streamlit URL.
+**Important:** Upload these images to a folder named `screenshots` in the root of your GitHub repository, using the exact filenames shown below.
 
-## 3. Technology Stack
+### 1. Executive Overview
+
+![AttritionIQ Executive Overview](screenshots/01_Executive_Overview.png)
+
+The Executive Overview provides a consolidated view of workforce metrics, including:
+
+- Total employees.
+- Employees retained and employees who left.
+- Overall attrition rate.
+- Average monthly income.
+- Attrition rate by department.
+- Employees leaving by job role.
+- Employee distribution and attrition rate by tenure band.
+- Employee attrition split.
+- Decomposition tree for exploring attrition drivers.
+- Interactive employee and department filters.
+
+### 2. Understanding Employee Attrition
+
+![AttritionIQ Attrition Drivers](screenshots/02_Attrition_Drivers.png)
+
+This page investigates attrition patterns across multiple employee attributes:
+
+- Overtime status.
+- Distance from home.
+- Age group.
+- Monthly income band.
+- Performance rating.
+- Job satisfaction.
+- Department.
+- Key Influencers analysis.
+
+These comparisons help users investigate patterns associated with attrition. They do not establish causation.
+
+### 3. Risk Segmentation & Action List
+
+![AttritionIQ Risk Segmentation](screenshots/03_Risk_Segmentation.png)
+
+This page provides a rule-based employee segmentation view with:
+
+- Attrition rate by number of defined risk factors.
+- High-risk employee count.
+- Active high-risk employee count.
+- Employee action-list table.
+- Department and job-role filters.
+- Selected employee attributes for further review.
+
+The Power BI risk-factor score is based on manually defined business rules and is separate from the Random Forest model's predicted probability.
+
+### Live Prediction Application
+
+Explore the interactive application:
+
+**[Open AttritionIQ on Streamlit](https://attritioniq-7.streamlit.app/#hr-attrition-intelligence)**
+
+The Streamlit application provides workforce analytics and an employee attrition prediction interface. The Power BI report is a separate deliverable and is not hosted at the Streamlit URL.
+
+---
+
+## Key Features
+
+- Snowflake integration for workforce data retrieval.
+- Exploratory data analysis and data-quality checks.
+- Random Forest classification pipeline.
+- Numerical and categorical missing-value imputation.
+- One-hot encoding for categorical features.
+- SMOTE for addressing class imbalance during model training.
+- Classification threshold evaluation.
+- Interactive Streamlit analytics and prediction interface.
+- Power BI executive dashboard and attrition-driver analysis.
+- Rule-based employee risk segmentation.
+- Model evaluation metrics and visualization outputs.
+
+## Technology Stack
 
 | Category | Technologies |
 |---|---|
 | Programming language | Python |
 | Data manipulation | Pandas, NumPy |
-| Data warehouse | Snowflake |
-| Exploratory analysis | Pandas, Matplotlib, Seaborn |
-| Machine learning | Scikit-learn |
-| Class imbalance | imbalanced-learn, SMOTE |
-| Interactive visualization | Plotly |
+| Cloud data warehouse | Snowflake |
+| Machine learning | Scikit-learn, Random Forest |
+| Class imbalance handling | imbalanced-learn, SMOTE |
+| Data visualization | Matplotlib, Seaborn, Plotly |
 | Web application | Streamlit |
 | Business intelligence | Microsoft Power BI |
-| Model persistence | Joblib / Pickle-compatible pipeline |
-| Development and version control | VS Code, Git, GitHub |
+| Model persistence | Joblib / serialized scikit-learn pipeline |
+| Development tools | VS Code, Git, GitHub |
 
-## 4. Dataset Overview
+## Dataset Overview
 
-The project uses the `HR_ATTRITION.RAW.HR_ATTRITION_FINAL` table in Snowflake.
+The project uses the Snowflake table:
+
+`HR_ATTRITION.RAW.HR_ATTRITION_FINAL`
 
 ### Dataset Summary
 
@@ -149,7 +166,7 @@ The project uses the `HR_ATTRITION.RAW.HR_ATTRITION_FINAL` table in Snowflake.
 | Employees who stayed | 3,341 |
 | Employees who left | 1,359 |
 | Overall attrition rate | 28.91% |
-| Duplicate rows identified | 0 |
+| Duplicate rows identified during EDA | 0 |
 
 ### Dataset Features
 
@@ -164,7 +181,7 @@ The project uses the `HR_ATTRITION.RAW.HR_ATTRITION_FINAL` table in Snowflake.
 | `PERFORMANCE_RATING` | Performance rating |
 | `OVERTIME` | Overtime status |
 | `DISTANCE_FROM_HOME` | Distance from home |
-| `ATTRITION` | Target variable indicating whether an employee left |
+| `ATTRITION` | Target indicating whether an employee left |
 | `MONTHLY_INCOME` | Monthly income |
 | `YEARS_AT_COMPANY` | Employee tenure |
 | `JOB_SATISFACTION` | Job satisfaction rating |
@@ -176,13 +193,15 @@ Exploratory analysis identified missing values in:
 - `PERFORMANCE_RATING`: 377 records, approximately 8.02%.
 - `DISTANCE_FROM_HOME`: 379 records, approximately 8.06%.
 
-The model pipeline handles missing numerical values through median imputation and missing categorical values through most-frequent imputation. The employee identifier is excluded from the model's input features.
+The machine learning pipeline handles missing numerical values using median imputation and missing categorical values using most-frequent imputation.
 
-## 5. Exploratory Data Analysis
+The employee identifier, `EMP_ID`, is excluded from the model's predictive features.
 
-The EDA workflow investigates workforce characteristics and their relationships with attrition.
+## Exploratory Data Analysis
 
-Key analyses include:
+Exploratory data analysis was performed to understand workforce characteristics and investigate patterns associated with attrition.
+
+The analysis includes:
 
 - Overall attrition distribution.
 - Attrition by department.
@@ -201,34 +220,35 @@ outputs/
 └── salary_vs_attrition.png
 ```
 
-These analyses describe patterns and associations in the available dataset. They do not establish that a particular characteristic causes an employee to leave.
+The analysis helps describe relationships in the dataset but does not prove that any single employee attribute causes attrition.
 
-## 6. Machine Learning — Random Forest
+## Machine Learning Model
 
 ### Objective
 
-The prediction model estimates the probability that an employee belongs to the attrition class based on the available employee attributes.
+The objective is to estimate the probability that an employee belongs to the attrition class using the available workforce attributes.
 
-The target variable is `ATTRITION`, encoded as:
+The target variable is encoded as:
 
 - `No` → `0`
 - `Yes` → `1`
 
 ### Model Pipeline
 
-The machine learning workflow consists of:
+The workflow consists of the following steps:
 
-1. Loading the employee dataset from Snowflake.
-2. Excluding `EMP_ID` from the predictive features.
-3. Splitting the data into training and testing sets using an 80/20 stratified split.
-4. Imputing missing numerical values with the median.
-5. Imputing missing categorical values with the most frequent category.
-6. Encoding categorical variables using one-hot encoding.
-7. Applying SMOTE to the training data to address class imbalance.
-8. Training a Random Forest classifier.
-9. Evaluating predictions using classification metrics.
-10. Comparing probability thresholds.
-11. Saving the trained pipeline and evaluation outputs.
+1. Retrieve workforce data from Snowflake.
+2. Exclude the employee identifier from the predictive features.
+3. Split the dataset into training and testing subsets using an 80/20 stratified split.
+4. Impute missing numerical values using the median.
+5. Impute missing categorical values using the most frequent category.
+6. Encode categorical variables using one-hot encoding.
+7. Apply SMOTE within the training pipeline to address class imbalance.
+8. Train a Random Forest classifier.
+9. Evaluate classification performance.
+10. Compare classification probability thresholds.
+11. Save the trained pipeline and evaluation outputs.
+12. Integrate the model into the Streamlit prediction application.
 
 ### Random Forest Configuration
 
@@ -240,11 +260,15 @@ RandomForestClassifier(
 )
 ```
 
-The preprocessing steps and classifier are packaged into a pipeline so that the same transformations can be applied during prediction.
+The trained preprocessing and classification pipeline is saved as:
 
-### Model Evaluation
+`models/attrition_model.pkl`
 
-The initial Random Forest model, evaluated at the default classification threshold, achieved the following recorded results:
+The application must load a compatible saved pipeline to generate predictions.
+
+## Model Evaluation
+
+The initial Random Forest evaluation at the default classification threshold produced these recorded results:
 
 | Metric | Score |
 |---|---:|
@@ -254,9 +278,9 @@ The initial Random Forest model, evaluated at the default classification thresho
 | F1-score | 23.77% |
 | ROC-AUC | 0.6418 |
 
-### Threshold Optimization
+### Classification Threshold Optimization
 
-A separate threshold evaluation explored how changing the classification threshold affects attrition detection.
+Different classification thresholds were evaluated to study the trade-off between detecting employees who left and generating false-positive predictions.
 
 | Threshold | Accuracy | Precision | Recall | F1-score |
 |---:|---:|---:|---:|---:|
@@ -268,95 +292,71 @@ A separate threshold evaluation explored how changing the classification thresho
 | 0.45 | 71.06% | 50.00% | 37.50% | 42.86% |
 | 0.50 | 70.74% | 48.92% | 25.00% | 33.09% |
 
-The threshold of **0.25** was selected for the Streamlit application's binary attrition classification because it produced the highest F1-score among the tested thresholds.
+A threshold of **0.25** was selected for the Streamlit application's binary classification decision because it achieved the highest F1-score among the tested thresholds.
 
-At this threshold, recall is high, meaning the model identifies a large proportion of employees who left in the evaluation data. However, precision and accuracy are lower than at some higher thresholds, so more employees who stay may also be flagged.
+At this threshold, recall is high, meaning the model identifies a large proportion of employees who left in the evaluation data. However, precision and accuracy are lower than at some higher thresholds, so some employees who stayed may also be flagged.
 
-The choice of threshold should depend on the business cost of missed attrition versus unnecessary follow-up. These results should be confirmed using a held-out evaluation dataset before operational use.
+The threshold should be selected according to the business cost of missed attrition versus unnecessary follow-up. For reliable final reporting, threshold selection should use validation data and final metrics should be measured on a separate held-out test set.
 
-**Evaluation note:** The threshold-optimization figures are reported from the project's recorded evaluation output. They should not be described as independent final test performance unless the threshold was selected on validation data and evaluated on a separate test set.
+The results above reflect the recorded project evaluation and should not be described as independent final test performance unless a separate final test set was used.
 
-## 7. Streamlit Application
+The Streamlit risk categories and the Power BI risk-factor score are separate from the Random Forest's binary classification threshold.
 
-The Streamlit application provides an interactive interface for exploring workforce data and using the trained prediction pipeline.
+## Streamlit Application
+
+The deployed Streamlit application provides an interactive interface for workforce analytics and prediction.
+
+Its features include:
 
 ### Executive Overview
-
-- Total employee count.
-- Employee attrition metrics.
-- Workforce summary charts.
-- Department and job-role insights.
+- Workforce KPIs.
+- Employee retention and attrition summaries.
+- Department and job-role visualizations.
 
 ### Attrition Analytics
-
-- Attrition by overtime.
-- Attrition by department and job role.
-- Demographic and workforce comparisons.
-- Interactive filters and visualizations.
+- Attrition comparisons by employee attributes.
+- Interactive filters.
+- Workforce trend visualizations.
 
 ### Predict Attrition
-
-- Enter or select employee attributes.
-- Generate an attrition probability using the trained pipeline.
-- Classify the prediction using the configured threshold.
-- Display a risk category and relevant risk indicators.
+- Employee attribute inputs.
+- Model-generated attrition probability.
+- Binary classification using the configured threshold.
+- Risk indicators to support further review.
 
 ### Employee Explorer
-
-- Filter employee records.
-- Explore selected employee attributes.
-- Export available filtered data where supported.
+- Filtered employee data exploration.
+- Employee attribute analysis.
+- Data export where supported by the application.
 
 ### Model Intelligence
-
-- View model evaluation metrics.
-- Review feature-importance information.
-- Explore threshold and model insights.
-
-The application uses a separate descriptive risk categorization from the binary classification threshold. A risk category shown in the dashboard should therefore not be interpreted as the same thing as the model's binary prediction.
+- Model performance metrics.
+- Feature-importance information.
+- Threshold and model insights.
 
 **Live application:** [https://attritioniq-7.streamlit.app/](https://attritioniq-7.streamlit.app/)
 
-## 8. Power BI Dashboard
+Database-dependent features require the configured Snowflake connection, and prediction functionality requires a compatible saved model.
 
-The Power BI report is named **AttritionIQ | Workforce Insights** and contains three pages.
+## Power BI Dashboard
 
-### Page 1 — Executive Overview
+The Power BI report is titled **AttritionIQ | Workforce Insights** and contains three pages.
 
-Provides a high-level view of workforce composition and employee attrition.
+### Page 1: Executive Overview
 
-Includes:
+Provides a consolidated view of workforce metrics, department-level attrition, employees leaving by job role, tenure analysis, attrition distribution, and interactive filters.
 
-- Total employee count.
-- Employees who stayed and left.
-- Overall attrition rate.
-- Attrition by department.
-- Employees leaving by job role.
-- Attrition distribution.
-- Tenure-band analysis.
-- Decomposition tree for exploring attrition drivers.
-- Interactive workforce slicers.
+### Page 2: Understanding Employee Attrition
 
-### Page 2 — Attrition Drivers
+Investigates attrition patterns across overtime, distance from home, age group, income band, performance rating, job satisfaction, and department. It also includes Key Influencers analysis.
 
-Investigates how attrition rates differ across selected employee attributes.
+### Page 3: Risk Segmentation & Action List
 
-Includes:
+Segments employees using a manually defined risk-factor score and displays risk-group attrition rates, employee counts, and a filtered employee action list.
 
-- Attrition by overtime.
-- Attrition by distance-from-home band.
-- Attrition by age group.
-- Attrition by income band.
-- Attrition by performance rating.
-- Attrition by job satisfaction.
-- Department-level comparison.
-- Key Influencers analysis.
+### Business-Defined Risk Factors
 
-### Page 3 — Risk Segmentation & Action List
-
-Uses a defined set of business rules to segment employees for further review.
-
-The configured risk-factor score adds one point for each of the following conditions:
+The Power BI score adds one point for each of the following conditions:
 
 ```dax
 Risk Factors =
@@ -369,32 +369,23 @@ IF(HR_ATTRITION_FINAL[OVERTIME] = "Yes", 1, 0)
 
 The score ranges from 0 to 5 and represents the number of configured conditions met.
 
-The page includes:
+This is a business-rule-based score, not the Random Forest's learned prediction score. Meeting several conditions does not prove that an employee will leave.
 
-- Attrition rate by risk-factor count.
-- High-risk employee counts based on the configured criteria.
-- Active employees meeting selected risk criteria.
-- An employee action-list table.
-- Department and job-role filters.
+The Power BI report is saved as:
 
-These rules are descriptive business criteria, not the Random Forest model's learned feature weights. Meeting several conditions does not prove that an employee will leave.
+`HR_Attrition_Dashboard.pbix`
 
-**Power BI file:** `HR_Attrition_Dashboard.pbix`
+It can be opened in Power BI Desktop. Online publication and data refresh require separate configuration and credentials.
 
-The report can be opened in Power BI Desktop. Online publication and refresh require separate configuration.
+## Project Structure
 
-## 9. Project Structure
-
-The following represents the local development structure. Only files actually committed to GitHub will be available to repository visitors.
+The local development setup includes the following files. The GitHub repository may contain a subset, depending on which files have been committed.
 
 ```text
 Attrition_IQ/
-│
 ├── data/
-│
 ├── models/
 │   └── attrition_model.pkl
-│
 ├── outputs/
 │   ├── attrition_by_department.png
 │   ├── attrition_by_overtime.png
@@ -405,19 +396,14 @@ Attrition_IQ/
 │   ├── final_threshold_config.csv
 │   ├── final_random_forest_confusion_matrix.png
 │   └── threshold_vs_f1.png
-│
 ├── screenshots/
-│   ├── streamlit-dashboard.png
-│   ├── powerbi-executive-overview.png
-│   ├── powerbi-attrition-drivers.png
-│   ├── powerbi-risk-segmentation.png
-│   └── attrition-prediction.png
-│
+│   ├── 01_Executive_Overview.png
+│   ├── 02_Attrition_Drivers.png
+│   └── 03_Risk_Segmentation.png
 ├── src/
 │   ├── connect_snowflake.py
 │   ├── eda.py
 │   └── train_model.py
-│
 ├── app.py
 ├── main.py
 ├── requirements.txt
@@ -425,25 +411,25 @@ Attrition_IQ/
 └── .gitignore
 ```
 
-The `.env` file, virtual environment, private datasets, and other sensitive or unnecessary files should be excluded from GitHub.
+Do not commit `.env`, credentials, private employee data, or the virtual environment. Include the Power BI `.pbix` file only if you intend to share it.
 
-## 10. Run Locally
+## Installation and Setup
 
 ### Prerequisites
 
-- Python compatible with the installed dependencies.
-- Snowflake access to the required database and table.
+- Python compatible with the dependencies listed in `requirements.txt`.
+- A Snowflake account with access to the required database and table.
 - Git.
-- Power BI Desktop for the Power BI report.
+- Power BI Desktop if you want to open the Power BI report.
 
-### Step 1 — Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/samirmore7/Attrition_IQ.git
 cd Attrition_IQ
 ```
 
-### Step 2 — Create and activate a virtual environment
+### 2. Create a Virtual Environment
 
 On Windows:
 
@@ -452,18 +438,18 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-### Step 3 — Install dependencies
+### 3. Install Dependencies
 
 ```bash
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Step 4 — Configure Snowflake
+### 4. Configure Snowflake
 
-Create a local `.env` file in the project root using the exact variable names expected by `src/connect_snowflake.py`.
+Create a local `.env` file using the exact variable names expected by `src/connect_snowflake.py`.
 
-Example configuration:
+For example, if your connection script uses these variable names:
 
 ```env
 SNOWFLAKE_ACCOUNT=your_account_identifier
@@ -475,93 +461,63 @@ SNOWFLAKE_SCHEMA=RAW
 SNOWFLAKE_ROLE=your_role
 ```
 
-Replace these placeholders with your own configuration. Do not commit credentials to GitHub.
+Replace the placeholders with your own Snowflake configuration. Never commit this file or publish credentials.
 
-### Step 5 — Run exploratory data analysis
+### 5. Run Exploratory Data Analysis
 
 ```bash
 python src/eda.py
 ```
 
-### Step 6 — Train the model
+### 6. Train the Machine Learning Model
 
 ```bash
 python src/train_model.py
 ```
 
-This regenerates the model and supported evaluation outputs. Retraining is not required simply to launch the application if a compatible trained model is already available.
+This regenerates the saved model and evaluation outputs. Retraining is not necessary to launch the application if a compatible trained model is already available.
 
-### Step 7 — Launch the Streamlit app
+### 7. Launch Streamlit
 
 ```bash
 streamlit run app.py
 ```
 
-Open the local address printed in the terminal, typically `http://localhost:8501`.
+Open the local URL printed in the terminal, usually:
 
-The application requires valid Snowflake configuration for database-dependent functionality.
+`http://localhost:8501`
 
-## 11. Deployment
+The application requires valid Snowflake configuration for database-dependent features.
 
-The Streamlit application is deployed at:
+## Security and Responsible Use
 
-**[https://attritioniq-7.streamlit.app/](https://attritioniq-7.streamlit.app/)**
-
-The deployed application requires its configured Python dependencies, compatible saved model, and database secrets.
-
-Deployment configuration should keep Snowflake credentials in the hosting platform's secrets manager rather than in source code.
-
-The Power BI report is maintained separately. Its online availability and refresh behavior depend on its publication method, connection mode, credentials, and any required gateway or licensing configuration.
-
-## 12. Security, Privacy & Responsible AI
-
-This project uses employee-related data and predictive outputs, so appropriate safeguards are essential.
-
-- Never commit passwords, tokens, or the `.env` file.
+- Keep credentials and `.env` files out of source control.
+- Use least-privilege access to Snowflake.
 - Avoid publishing personally identifiable employee information.
-- Use least-privilege permissions for Snowflake access.
-- Use anonymized or synthetic examples in public screenshots.
-- Treat predicted probabilities as estimates rather than certainty.
-- Evaluate model fairness and performance across relevant employee groups before operational use.
-- Use risk scores to support constructive human review, not as the sole basis for employment decisions.
+- Use synthetic or appropriately anonymized examples in public screenshots.
+- Treat model probabilities as estimates, not certainties.
+- Assess fairness, privacy, and model performance before operational use.
+- Do not use predictions or risk scores as the sole basis for employment decisions.
 
-## 13. Limitations & Future Enhancements
+## Limitations and Future Improvements
 
-Potential improvements include:
-
-- Evaluate the model using a dedicated validation set and an untouched final test set.
-- Tune hyperparameters and improve precision–recall balance.
+- Validate the classification threshold on a dedicated validation set.
+- Evaluate final performance on a separate held-out test set.
+- Improve the precision–recall balance.
 - Assess probability calibration and prediction stability.
-- Investigate potential bias across employee groups.
-- Add automated data-quality checks.
-- Add automated testing and continuous deployment.
+- Evaluate performance across relevant employee groups.
+- Add automated data-quality checks and software tests.
 - Monitor model performance as new data becomes available.
-- Improve dashboard documentation and add more visual examples.
-- Configure and document Power BI refresh behavior.
-- Evaluate the business impact of retention interventions.
-
-## 14. Key Learnings
-
-This project demonstrates practical experience in:
-
-- Connecting Python applications to a cloud data warehouse.
-- Performing exploratory data analysis.
-- Building a machine learning preprocessing and classification pipeline.
-- Handling class imbalance with SMOTE.
-- Evaluating a classifier using multiple metrics.
-- Investigating classification threshold trade-offs.
-- Developing interactive applications with Streamlit.
-- Building business intelligence reports in Power BI.
-- Combining predictive analytics with business-defined risk indicators.
-- Documenting and deploying a data science project.
+- Document Power BI refresh and publication configuration.
+- Add a screenshot of the Streamlit prediction interface.
 
 ## Author
 
 **Samir More**
 
-- GitHub: [samirmore7](https://github.com/samirmore7)
-- Project repository: [Attrition_IQ](https://github.com/samirmore7/Attrition_IQ)
-- Live application: [AttritionIQ — Streamlit](https://attritioniq-7.streamlit.app/)
+- GitHub: [@samirmore7](https://github.com/samirmore7)
+- Project Repository: [Attrition_IQ](https://github.com/samirmore7/Attrition_IQ)
+- Live Application: [AttritionIQ on Streamlit](https://attritioniq-7.streamlit.app/)
 
 ---
 
